@@ -49,23 +49,15 @@ android {
     }
 }
 
-// Flutter extension - configure the source directory
-flutter {
-    source = "../.."
+// Flutter extension - configure the source directory using dynamic property access
+// The flutter.gradle script provides this extension dynamically
+extensions.configure<Any>("flutter") {
+    val sourceMethod = this.javaClass.getMethod("setSource", Any::class.java)
+    sourceMethod.invoke(this, "../..")
 }
 
 dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test:runner:1.4.0")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
-}
-
-// Extension function to configure Flutter extension
-fun Project.flutter(configure: FlutterExtension.() -> Unit) {
-    extensions.configure("flutter", configure)
-}
-
-// Wrapper for the Flutter extension
-interface FlutterExtension {
-    var source: String
 }

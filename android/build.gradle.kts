@@ -22,7 +22,7 @@ rootProject.allprojects {
 apply(plugin = "com.android.library")
 
 configure<com.android.build.gradle.LibraryExtension> {
-    compileSdkVersion(30)
+    compileSdk = 30
     buildToolsVersion = "30.0.3"
 
     compileOptions {
@@ -35,11 +35,11 @@ configure<com.android.build.gradle.LibraryExtension> {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    lintOptions {
-        disable("InvalidPackage")
+    lint {
+        disable += "InvalidPackage"
     }
 }
 
 dependencies {
-    "implementation"("androidx.appcompat:appcompat:1.3.0")
+    implementation("androidx.appcompat:appcompat:1.3.0")
 }
