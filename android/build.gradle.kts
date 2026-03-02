@@ -40,12 +40,9 @@ android {
         disable("InvalidPackage")
     }
     
-    dependencies {
-        implementation("androidx.appcompat:appcompat:1.3.0")
-    }
-    
     buildToolsVersion = "30.0.3"
 }
 
 dependencies {
+    implementation("androidx.appcompat:appcompat:1.3.0")
 }
