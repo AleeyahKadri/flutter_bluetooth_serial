@@ -5,9 +5,7 @@ if (localPropertiesFile.exists()) {
 }
 
 val flutterRoot = localProperties.getProperty("flutter.sdk")
-if (flutterRoot == null) {
-    throw GradleException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
-}
+    ?: throw GradleException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
 
 plugins {
     id("com.android.application")
@@ -48,8 +46,9 @@ android {
     }
 }
 
-(extensions.getByName("flutter") as groovy.lang.GroovyObject).apply {
-    invokeMethod("source", arrayOf("../.."))
+// Flutter configuration - using reflection to call Groovy DSL
+project.extensions.configure<Any>("flutter") {
+    (this as groovy.lang.GroovyObject).invokeMethod("source", "../..")
 }
 
 dependencies {
