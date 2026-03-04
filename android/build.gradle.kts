@@ -1,0 +1,48 @@
+group = "io.github.edufolly.flutterbluetoothserial"
+version = "1.0-SNAPSHOT"
+
+buildscript {
+    repositories {
+        google()
+        jcenter()
+    }
+
+    dependencies {
+        classpath("com.android.tools.build:gradle:4.1.0")
+    }
+}
+
+rootProject.allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+plugins {
+    id("com.android.library")
+}
+
+android {
+    compileSdkVersion(30)
+    
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+    
+    defaultConfig {
+        minSdkVersion(19)
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+    
+    lintOptions {
+        disable("InvalidPackage")
+    }
+    
+    buildToolsVersion = "30.0.3"
+}
+
+dependencies {
+    implementation("androidx.appcompat:appcompat:1.3.0")
+}
